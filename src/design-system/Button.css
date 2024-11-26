@@ -1,35 +1,194 @@
 .button {
   border: none;
   outline: none;
+  --border-radius: 9999px;
+  border-radius: var(--border-radius);
+  position: relative;
+  background-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.15), 0 1px 2px -1px rgb(0 0 0 / 0.15),
+    inset 0 2px 2px rgba(255, 255, 255, 0.4);
+  color: #44403c;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  font-family: "Nunito", sans-serif;
+}
+
+.button.flat {
+  box-shadow: none;
+}
+
+.button.flat:active {
+  box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 0.15),
+    inset 0 1px 2px -1px rgb(0 0 0 / 0.15);
+}
+
+.button.button-small {
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.button.button-medium {
   padding-block: 0.5rem;
   padding-inline: 0.75rem;
-  border-radius: 9999px;
-  position: relative;
-  background: linear-gradient(to bottom, #fafaf933, #44403c33);
-  font-weight: 600;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1),
-    inset 0 2px 2px rgba(255, 255, 255, 0.6);
-  color: #44403c;
-  text-shadow: 0 0.75px 2px rgba(255, 255, 255, 0.6),
-    0 -1px 1px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.button.button-large {
+  padding-block: 0.75rem;
+  padding-inline: 1rem;
+  font-size: 1rem;
+}
+
+.button.button-icon {
+  padding: 0.5rem;
+  aspect-ratio: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button.button-icon .button-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button.button-icon .button-label svg {
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+}
+
+.button.button-secondary,
+.button.button-tertiary {
+  box-shadow: none;
+}
+
+.button.button-tertiary.background:hover {
+  background-color: var(--tds-surface-color);
+}
+
+.button.button-tertiary.background:active {
+  background-color: var(--tds-card-color);
+}
+
+.button.button-tertiary.surface:hover {
+  background-color: var(--tds-card-color);
+}
+
+.button.button-tertiary.surface:active {
+  background-color: var(--tds-card-color-hover);
+}
+
+.button.button-tertiary.card:hover {
+  background-color: var(--tds-card-color-active);
+}
+
+.button.button-tertiary.card:active {
+  background-color: var(--tds-background-color);
+}
+
+.button.button-tertiary.background:active {
+  box-shadow: none;
+}
+
+.button.birch-wood {
+  color: #2e1f1c;
+}
+
+.button.button-icon.birch-wood .button-label svg {
+  filter: drop-shadow(0 0px 2px rgba(46, 31, 28, 0.5));
 }
 
 .background-texture {
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: calc(100% - 4px);
+  width: calc(100% - 4px);
   border-radius: inherit;
   inset: 0;
   margin: auto;
   z-index: -10;
 }
 
-.button:active {
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05),
-    inset 0 2.5px 2px rgba(255, 255, 255, 0.5);
+.background-texture-bezel {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  inset: 0;
+  margin: auto;
+  z-index: -30;
 }
 
-.button:active > .button-label {
-  transform: translate3d(0, 0.0625rem, 0);
+.button.button-secondary .background-texture-bezel {
+}
+
+.lighting-mask {
+  position: absolute;
+  inset: 0;
+  height: calc(100% - 4px);
+  width: calc(100% - 4px);
+  margin: auto;
+  border-radius: inherit;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2),
+    rgba(0, 0, 0, 0.2)
+  );
+  z-index: -5;
+}
+
+.button.button-secondary .background-texture {
+  height: calc(100% - 0.375rem);
+  width: calc(100% - 0.375rem);
+}
+
+.button.button-secondary .lighting-mask {
+  height: calc(100% - 0.375rem);
+  width: calc(100% - 0.375rem);
+}
+
+.button.button-secondary.background .lighting-mask {
+  background: var(--tds-background-color);
+}
+
+.button.button-secondary.surface .lighting-mask {
+  background: var(--tds-surface-color);
+}
+
+.button.button-secondary.card .lighting-mask {
+  background: var(--tds-card-color);
+}
+
+.lighting-mask-bezel {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2),
+    rgba(0, 0, 0, 0.2)
+  );
+  z-index: -20;
+}
+
+.button:active {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05),
+    inset 0 2.5px 2px rgba(255, 255, 255, 0.3);
+}
+
+.button.button-secondary:active {
+  box-shadow: none;
+}
+
+.button.button-secondary.background:active .lighting-mask {
+  background: var(--tds-surface-color);
+}
+
+.button.button-secondary.surface:active .lighting-mask {
+  background: var(--tds-card-color);
+}
+
+.button.button-secondary.card:active .lighting-mask {
+  background: var(--tds-background-color);
 }

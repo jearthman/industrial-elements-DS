@@ -1,4 +1,18 @@
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  --tds-bg-color: #fafafa;
-  --tds-on-bg: #171717;
+  font-family: "Nunito", sans-serif;
+  font-weight: 500;
+
+  --tds-background-color: #fafafa;
+  --tds-surface-color: #f4f4f5;
+  --tds-card-color: #e4e4e7;
+  --tds-card-color-hover: #d4d4d8;
+  --tds-card-color-active: #a1a1aa;
+  --tds-on-bg: #27272a;
 }

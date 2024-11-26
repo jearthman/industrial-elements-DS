@@ -1,38 +1,54 @@
-import './Button.css';
-
+import "./Button.css";
+import RoughConcrete from "../assets/texture-filters/rough-concrete";
+import BrushedSteel from "../assets/texture-filters/brushed-steel";
+import BirchWood from "../assets/texture-filters/birch-wood";
 export interface ButtonProps {
-  label: string;
-  variant?: 'primary' | 'secondary' | 'tertiary';
-  size?: 'small' | 'large';
+  children: React.ReactNode;
+  variant?: "primary" | "secondary" | "tertiary";
+  size?: "small" | "medium" | "large" | "icon";
+  material?: "rough-concrete" | "brushed-steel" | "birch-wood";
+  grandparentBackground?: "background" | "surface" | "card";
+  flat?: boolean;
 }
-export default function Button({ label, variant, size }: ButtonProps) {
+export default function Button({
+  children = "Button",
+  variant = "primary",
+  size = "medium",
+  material = "rough-concrete",
+  grandparentBackground = "background",
+  flat = false,
+}: ButtonProps) {
   return (
-    <div className="button-wrapper">
-      <button className={`button button-${variant} button-${size}`}>
-        <svg xmlns="http://www.w3.org/2000/svg" className="background-texture">
-          <defs>
-            <filter id="noise">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.15"
-                numOctaves="3"
-                result="noise"
-              />
-
-              <feDiffuseLighting
-                in="noise"
-                lighting-color="#e7e5e4"
-                surfaceScale="0.7"
-                result="light"
-              >
-                <feDistantLight azimuth="45" elevation="70" />
-              </feDiffuseLighting>
-            </filter>
-          </defs>
-          <rect width="100%" height="100%" filter="url(#noise)" />
-        </svg>
-        <span className="button-label">{label}</span>
-      </button>
-    </div>
+    <button
+      className={`button button-${variant} button-${size} ${grandparentBackground} ${material} ${
+        flat ? "flat" : ""
+      } `}
+    >
+      {variant !== "tertiary" && material === "rough-concrete" && (
+        <>
+          <RoughConcrete className="background-texture-bezel" />
+          <RoughConcrete className="background-texture" />
+        </>
+      )}
+      {variant !== "tertiary" && material === "brushed-steel" && (
+        <>
+          <BrushedSteel className="background-texture-bezel" />
+          <BrushedSteel className="background-texture" />
+        </>
+      )}
+      {variant !== "tertiary" && material === "birch-wood" && (
+        <>
+          <BirchWood className="background-texture-bezel" />
+          <BirchWood className="background-texture" />
+        </>
+      )}
+      {variant !== "tertiary" && (
+        <>
+          <div className="lighting-mask-bezel"></div>
+          <div className={`lighting-mask`}></div>
+        </>
+      )}
+      <span className="button-label">{children}</span>
+    </button>
   );
 }
